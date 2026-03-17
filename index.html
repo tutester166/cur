@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>电位器控制逻辑 - 电路图</title>
+    <style>
+        body { background: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; }
+        svg { display: block; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <svg id="circuit" width="1000" height="1000" style="background: white;"></svg>
+</div>
+<script>
+(function() {
+    // 嵌入的JSON数据（从电位器控制逻辑.txt复制）
+    const rawData = {
+  "ID": null,
+  "Type": 0,
+  "Components": 27,
+  "Subject": null,
+  "StatusSave": "{\"SimulationSpeed\":1.0,\"Elements\":[{\"ModelID\":\"Push Switch\",\"Identifier\":\"4c151d9152ad4b708d01cbc3dcc7317c\",\"Label\":\"+\",\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"默认开关\":0.0},\"Statistics\":{\"电流\":0.0},\"Position\":\"-0.1882,-0.0002883077,-0.2904962\",\"Rotation\":\"0.3956877,179.9993,0.0003287909\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Push Switch\",\"Identifier\":\"c3e17822e7f94ec4a4d766cd21b7e09b\",\"Label\":\"-\",\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"默认开关\":0.0,\"锁定\":1.0},\"Statistics\":{\"电流\":0.0},\"Position\":\"-0.1761116,-0.0002881289,-0.4546964\",\"Rotation\":\"-1.33402E-08,179.999,1.59742E-09\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Counter\",\"Identifier\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0},\"Statistics\":{},\"Position\":\"0.04370974,-3.838539E-05,-0.2859113\",\"Rotation\":\"-0.0005002864,180.0014,0.0001470481\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Counter\",\"Identifier\":\"907dfd51f7274197819d4c4dcafae3fd\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0},\"Statistics\":{},\"Position\":\"0.04278782,-3.838539E-05,-0.492992\",\"Rotation\":\"-0.0005109874,177.5579,0.0001254583\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Full Adder\",\"Identifier\":\"7aa1b00f207047dbbb118122f65380a7\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0},\"Statistics\":{},\"Position\":\"0.2415579,-3.8445E-05,-0.2978467\",\"Rotation\":\"-0.0005136254,180.0005,0.0001414295\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Full Adder\",\"Identifier\":\"0a047320d8284dd298aa3a25ad8253f1\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0},\"Statistics\":{},\"Position\":\"0.237373,-3.838539E-05,-0.4855248\",\"Rotation\":\"-0.0005115985,180.0471,0.0001330549\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"No Gate\",\"Identifier\":\"d6653a3507a74bfab60bdc3610b8d6ab\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":1.0,\"输入0\":0.0},\"Position\":\"0.0340979,-0.0002881885,-0.6550361\",\"Rotation\":\"359.6043,179.9995,-0.0003396727\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"No Gate\",\"Identifier\":\"06c71c50347045c3b0c3616a1ac0bf8f\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":1.0,\"输入0\":0.0},\"Position\":\"0.03841702,-0.0002882481,-0.7564353\",\"Rotation\":\"359.6043,179.9995,-0.0003359606\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Nor Gate\",\"Identifier\":\"f75f47e1101f48aca502157413d7bc39\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":1.0,\"输入0\":0.0,\"输入1\":0.0},\"Position\":\"0.4407241,-0.0002882481,-0.5957228\",\"Rotation\":\"359.6043,179.9989,-0.0003326035\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Nimp Gate\",\"Identifier\":\"e988ce6630024abe99a7a100f022276b\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":0.0,\"输入0\":0.0,\"输入1\":0.0},\"Position\":\"0.441928,-0.0002881289,-0.4842609\",\"Rotation\":\"359.6043,179.9995,-0.0003344487\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Nimp Gate\",\"Identifier\":\"3714bbc75f134f1f97d6ce67ef2a43f1\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":0.0,\"输入0\":0.0,\"输入1\":0.0},\"Position\":\"0.4432337,-0.0002882481,-0.381522\",\"Rotation\":\"359.6043,179.9994,-0.0003364493\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"And Gate\",\"Identifier\":\"9abe7d9eb526410db360cf67049fc2cb\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":0.0,\"输入0\":0.0,\"输入1\":0.0},\"Position\":\"0.4411762,-0.0002881289,-0.2740449\",\"Rotation\":\"359.6043,179.9993,-0.0003354816\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Nimp Gate\",\"Identifier\":\"5f4be3bedcec453592714f65d7234912\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":1.0,\"输入0\":1.0,\"输入1\":0.0},\"Position\":\"0.2981699,-0.0002882481,-0.747636\",\"Rotation\":\"359.6043,179.4245,-0.0003256907\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Nimp Gate\",\"Identifier\":\"82c2e7f34ba64a039b66dd141ca5ae5a\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"高电平\":3.0,\"低电平\":0.0,\"最大电流\":0.10000000149011612},\"Statistics\":{\"状态\":0.0,\"输入0\":1.0,\"输入1\":1.0},\"Position\":\"0.2972561,-0.0002881289,-0.8477539\",\"Rotation\":\"359.6043,180.0245,-0.0003315512\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Relay Component\",\"Identifier\":\"db727d1e74bb427a89edf4b114c54935\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"线圈电感\":0.20000000298023224,\"线圈电阻\":20.0,\"接通电流\":0.019999999552965164,\"额定电流\":1.0},\"Statistics\":{\"电流\":0.0,\"功率\":0.0,\"电压\":0.0,\"通路\":0.0},\"Position\":\"0.6581393,-0.0002880096,-0.2778123\",\"Rotation\":\"0.3957206,180.0018,0.0003429356\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Relay Component\",\"Identifier\":\"6c3cc736a428408996f9232bf063a129\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"线圈电感\":0.20000000298023224,\"线圈电阻\":20.0,\"接通电流\":0.019999999552965164,\"额定电流\":1.0},\"Statistics\":{\"电流\":4.94065645841247E-324,\"功率\":0.0,\"电压\":0.0,\"通路\":0.0},\"Position\":\"0.6568366,-0.0002881289,-0.3796172\",\"Rotation\":\"0.3957477,180.003,0.000343228\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Relay Component\",\"Identifier\":\"f10d979a4651457a97ecdc003fefdc58\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"线圈电感\":0.20000000298023224,\"线圈电阻\":20.0,\"接通电流\":0.019999999552965164,\"额定电流\":1.0},\"Statistics\":{\"电流\":0.0,\"功率\":0.0,\"电压\":0.0,\"通路\":0.0},\"Position\":\"0.6593493,-0.00028795,-0.4807201\",\"Rotation\":\"0.3957247,180.0031,0.0003369451\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Relay Component\",\"Identifier\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":0.0,\"线圈电感\":0.20000000298023224,\"线圈电阻\":20.0,\"接通电流\":0.019999999552965164,\"额定电流\":1.0},\"Statistics\":{\"电流\":0.15,\"功率\":0.44999999999999996,\"电压\":3.0,\"通路\":1.0},\"Position\":\"0.6590501,-0.00028795,-0.5777322\",\"Rotation\":\"0.3957196,180.0015,0.0003420512\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Resistor\",\"Identifier\":\"8e059bfa71ba4b6a8e7b39e8c6737624\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大电阻\":1000000.0,\"最小电阻\":0.10000000149011612,\"电阻\":1.00000000149012},\"Statistics\":{\"瞬间功率\":0.0,\"瞬间电流\":0.0,\"瞬间电压\":0.0,\"功率\":0.0,\"电压\":0.0,\"电流\":0.0},\"Position\":\"0.835231,-0.0002881885,-0.2777305\",\"Rotation\":\"0.3956714,179.9986,0.0003249422\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Resistor\",\"Identifier\":\"a6c7c571288f48c8ab80be9713a2ca26\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大电阻\":1000000.0,\"最小电阻\":0.10000000149011612,\"电阻\":3.00000000149012},\"Statistics\":{\"瞬间功率\":0.0,\"瞬间电流\":0.0,\"瞬间电压\":0.0,\"功率\":1.7347234759768079E-18,\"电压\":2.2812650943095959E-09,\"电流\":7.6042169772549213E-10},\"Position\":\"0.8351269,-0.0002882481,-0.3776794\",\"Rotation\":\"0.3956767,180,0.0003386484\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Resistor\",\"Identifier\":\"2c93d4b0ac834dfdb332f4b722e5d259\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大电阻\":1000000.0,\"最小电阻\":0.10000000149011612,\"电阻\":5.00000000149012},\"Statistics\":{\"瞬间功率\":0.0,\"瞬间电流\":0.0,\"瞬间电压\":0.0,\"功率\":0.0,\"电压\":0.0,\"电流\":0.0},\"Position\":\"0.8346385,-0.0002882481,-0.4766949\",\"Rotation\":\"0.3956601,179.9994,0.000332345\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Resistor\",\"Identifier\":\"22ffdc06b43e4969b0f083e7dfa9225d\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大电阻\":1000000.0,\"最小电阻\":0.10000000149011612,\"电阻\":7.00000000149012},\"Statistics\":{\"瞬间功率\":0.26631997875815194,\"瞬间电流\":0.1950530985220835,\"瞬间电压\":1.3653716899452371,\"功率\":0.26631997875815272,\"电压\":1.3653716899452391,\"电流\":0.19505309852208377},\"Position\":\"0.8315884,-0.0002883077,-0.569641\",\"Rotation\":\"0.3956759,180,0.0003402664\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Incandescent Lamp\",\"Identifier\":\"9ad631bea47d4ab486fac98f7c00b6a5\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"额定电压\":3.0,\"额定功率\":0.85},\"Statistics\":{\"瞬间功率\":0.28079373593101603,\"瞬间电流\":0.19505309852208347,\"瞬间电压\":1.439575879894188,\"功率\":0.28079373593101542,\"电压\":1.4395758798941862,\"电流\":0.19505309852208325,\"灯泡温度\":1074.7340107693233,\"电阻\":7.38043071759356},\"Position\":\"0.7468845,-0.0002883673,-0.7493811\",\"Rotation\":\"0.3956642,179.9978,0.0003190219\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Battery Source\",\"Identifier\":\"39651cdb6f19452c98359ed5c822cf9a\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大功率\":4.0500001907348633,\"电压\":1.5,\"内阻\":0.5},\"Statistics\":{\"电流\":0.19505243003368378,\"功率\":0.29257864465570416,\"电压\":1.5},\"Position\":\"0.4653803,-0.0002882481,0.03819514\",\"Rotation\":\"0.3960591,179.9803,0.0008013994\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Battery Source\",\"Identifier\":\"7709038443594ceaa08575e67a16e19a\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"最大功率\":4.0500001907348633,\"电压\":1.5,\"内阻\":0.5,\"锁定\":0.0},\"Statistics\":{\"电流\":0.19505243003368378,\"功率\":0.29257864465570416,\"电压\":1.5},\"Position\":\"0.638622,-0.0002883077,0.03195431\",\"Rotation\":\"0.3960615,179.9964,0.0007985125\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Simple Switch\",\"Identifier\":\"a3c424996e094ec3bd544861dbba1dda\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{\"开关\":1.0},\"Statistics\":{},\"Position\":\"0.2191774,-0.0002882481,0.005844501\",\"Rotation\":\"0.3956807,179.9954,0.0003254\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0},{\"ModelID\":\"Ground Component\",\"Identifier\":\"5a2eb42fa18f48b8a2f9614b741d73e0\",\"Label\":null,\"IsBroken\":false,\"IsLocked\":false,\"Properties\":{},\"Statistics\":{\"电流\":0.150000668751614},\"Position\":\"0.6497895,-0.0002883077,0.1777842\",\"Rotation\":\"0.3957017,179.9987,0.0003361711\",\"DiagramCached\":false,\"DiagramPosition\":{\"X\":0,\"Y\":0,\"Magnitude\":0.0},\"DiagramRotation\":0}],\"Wires\":[{\"Source\":\"c3e17822e7f94ec4a4d766cd21b7e09b\",\"SourcePin\":1,\"Target\":\"907dfd51f7274197819d4c4dcafae3fd\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"4c151d9152ad4b708d01cbc3dcc7317c\",\"SourcePin\":1,\"Target\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"SourcePin\":5,\"Target\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"907dfd51f7274197819d4c4dcafae3fd\",\"SourcePin\":1,\"Target\":\"907dfd51f7274197819d4c4dcafae3fd\",\"TargetPin\":5,\"ColorName\":\"蓝色导线\"},{\"Source\":\"06c71c50347045c3b0c3616a1ac0bf8f\",\"SourcePin\":1,\"Target\":\"0a047320d8284dd298aa3a25ad8253f1\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"0a047320d8284dd298aa3a25ad8253f1\",\"SourcePin\":1,\"Target\":\"7aa1b00f207047dbbb118122f65380a7\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"0a047320d8284dd298aa3a25ad8253f1\",\"SourcePin\":2,\"Target\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7aa1b00f207047dbbb118122f65380a7\",\"SourcePin\":3,\"Target\":\"d6653a3507a74bfab60bdc3610b8d6ab\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7aa1b00f207047dbbb118122f65380a7\",\"SourcePin\":2,\"Target\":\"40c6331c83c24453b0a7ef0262a9dc51\",\"TargetPin\":2,\"ColorName\":\"蓝色导线\"},{\"Source\":\"907dfd51f7274197819d4c4dcafae3fd\",\"SourcePin\":3,\"Target\":\"06c71c50347045c3b0c3616a1ac0bf8f\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"907dfd51f7274197819d4c4dcafae3fd\",\"SourcePin\":2,\"Target\":\"d6653a3507a74bfab60bdc3610b8d6ab\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"0a047320d8284dd298aa3a25ad8253f1\",\"SourcePin\":0,\"Target\":\"f75f47e1101f48aca502157413d7bc39\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7aa1b00f207047dbbb118122f65380a7\",\"SourcePin\":0,\"Target\":\"f75f47e1101f48aca502157413d7bc39\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"0a047320d8284dd298aa3a25ad8253f1\",\"SourcePin\":0,\"Target\":\"e988ce6630024abe99a7a100f022276b\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"e988ce6630024abe99a7a100f022276b\",\"SourcePin\":1,\"Target\":\"7aa1b00f207047dbbb118122f65380a7\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7aa1b00f207047dbbb118122f65380a7\",\"SourcePin\":0,\"Target\":\"3714bbc75f134f1f97d6ce67ef2a43f1\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"3714bbc75f134f1f97d6ce67ef2a43f1\",\"SourcePin\":1,\"Target\":\"0a047320d8284dd298aa3a25ad8253f1\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7aa1b00f207047dbbb118122f65380a7\",\"SourcePin\":0,\"Target\":\"9abe7d9eb526410db360cf67049fc2cb\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"9abe7d9eb526410db360cf67049fc2cb\",\"SourcePin\":1,\"Target\":\"0a047320d8284dd298aa3a25ad8253f1\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"5f4be3bedcec453592714f65d7234912\",\"SourcePin\":2,\"Target\":\"4c151d9152ad4b708d01cbc3dcc7317c\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"82c2e7f34ba64a039b66dd141ca5ae5a\",\"SourcePin\":2,\"Target\":\"c3e17822e7f94ec4a4d766cd21b7e09b\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"f75f47e1101f48aca502157413d7bc39\",\"SourcePin\":2,\"Target\":\"82c2e7f34ba64a039b66dd141ca5ae5a\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"9abe7d9eb526410db360cf67049fc2cb\",\"SourcePin\":2,\"Target\":\"5f4be3bedcec453592714f65d7234912\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"8e059bfa71ba4b6a8e7b39e8c6737624\",\"SourcePin\":1,\"Target\":\"a6c7c571288f48c8ab80be9713a2ca26\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"a6c7c571288f48c8ab80be9713a2ca26\",\"SourcePin\":1,\"Target\":\"2c93d4b0ac834dfdb332f4b722e5d259\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"2c93d4b0ac834dfdb332f4b722e5d259\",\"SourcePin\":1,\"Target\":\"22ffdc06b43e4969b0f083e7dfa9225d\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"22ffdc06b43e4969b0f083e7dfa9225d\",\"SourcePin\":1,\"Target\":\"9ad631bea47d4ab486fac98f7c00b6a5\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"f75f47e1101f48aca502157413d7bc39\",\"SourcePin\":2,\"Target\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"e988ce6630024abe99a7a100f022276b\",\"SourcePin\":2,\"Target\":\"f10d979a4651457a97ecdc003fefdc58\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"3714bbc75f134f1f97d6ce67ef2a43f1\",\"SourcePin\":2,\"Target\":\"6c3cc736a428408996f9232bf063a129\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"9abe7d9eb526410db360cf67049fc2cb\",\"SourcePin\":2,\"Target\":\"db727d1e74bb427a89edf4b114c54935\",\"TargetPin\":3,\"ColorName\":\"蓝色导线\"},{\"Source\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"SourcePin\":1,\"Target\":\"f10d979a4651457a97ecdc003fefdc58\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"f10d979a4651457a97ecdc003fefdc58\",\"SourcePin\":1,\"Target\":\"6c3cc736a428408996f9232bf063a129\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"6c3cc736a428408996f9232bf063a129\",\"SourcePin\":1,\"Target\":\"db727d1e74bb427a89edf4b114c54935\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"22ffdc06b43e4969b0f083e7dfa9225d\",\"SourcePin\":0,\"Target\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"TargetPin\":2,\"ColorName\":\"蓝色导线\"},{\"Source\":\"2c93d4b0ac834dfdb332f4b722e5d259\",\"SourcePin\":0,\"Target\":\"f10d979a4651457a97ecdc003fefdc58\",\"TargetPin\":2,\"ColorName\":\"蓝色导线\"},{\"Source\":\"a6c7c571288f48c8ab80be9713a2ca26\",\"SourcePin\":0,\"Target\":\"6c3cc736a428408996f9232bf063a129\",\"TargetPin\":2,\"ColorName\":\"蓝色导线\"},{\"Source\":\"8e059bfa71ba4b6a8e7b39e8c6737624\",\"SourcePin\":0,\"Target\":\"db727d1e74bb427a89edf4b114c54935\",\"TargetPin\":2,\"ColorName\":\"蓝色导线\"},{\"Source\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"SourcePin\":4,\"Target\":\"f10d979a4651457a97ecdc003fefdc58\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"f10d979a4651457a97ecdc003fefdc58\",\"SourcePin\":4,\"Target\":\"6c3cc736a428408996f9232bf063a129\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"6c3cc736a428408996f9232bf063a129\",\"SourcePin\":4,\"Target\":\"db727d1e74bb427a89edf4b114c54935\",\"TargetPin\":4,\"ColorName\":\"蓝色导线\"},{\"Source\":\"39651cdb6f19452c98359ed5c822cf9a\",\"SourcePin\":1,\"Target\":\"7709038443594ceaa08575e67a16e19a\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"5f4be3bedcec453592714f65d7234912\",\"SourcePin\":0,\"Target\":\"82c2e7f34ba64a039b66dd141ca5ae5a\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"0a047320d8284dd298aa3a25ad8253f1\",\"SourcePin\":4,\"Target\":\"39651cdb6f19452c98359ed5c822cf9a\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"86b1ce9d4e1c448e91a1c01ad4c9d28d\",\"SourcePin\":4,\"Target\":\"7709038443594ceaa08575e67a16e19a\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"9ad631bea47d4ab486fac98f7c00b6a5\",\"SourcePin\":1,\"Target\":\"7709038443594ceaa08575e67a16e19a\",\"TargetPin\":1,\"ColorName\":\"蓝色导线\"},{\"Source\":\"db727d1e74bb427a89edf4b114c54935\",\"SourcePin\":1,\"Target\":\"a3c424996e094ec3bd544861dbba1dda\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"a3c424996e094ec3bd544861dbba1dda\",\"SourcePin\":1,\"Target\":\"39651cdb6f19452c98359ed5c822cf9a\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"5f4be3bedcec453592714f65d7234912\",\"SourcePin\":0,\"Target\":\"a3c424996e094ec3bd544861dbba1dda\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"},{\"Source\":\"7709038443594ceaa08575e67a16e19a\",\"SourcePin\":1,\"Target\":\"5a2eb42fa18f48b8a2f9614b741d73e0\",\"TargetPin\":0,\"ColorName\":\"蓝色导线\"}]}",
+  "CameraSave": "{\"Mode\":0,\"Distance\":1.23647547,\"VisionCenter\":\"0.3835015,1.08,-0.7357852\",\"TargetRotation\":\"50,0,0\"}",
+  "Version": 2501,
+  "CreationDate": 1773747623906,
+  "Paused": false,
+  "Summary": {
+    "Type": 0,
+    "ParentID": null,
+    "ParentName": null,
+    "ParentCategory": null,
+    "ContentID": "bd8a7c2830517bbf1b915695",
+    "Editor": null,
+    "Coauthors": [],
+    "Description": [
+      "主要用到:补码减法，2-4译码器",
+      "主要逻辑还是很简单的",
+      "补充到8位也很简单，只不过需要3-8译码器",
+      "",
+      "用了继电器控制",
+      "实验为初中简易台灯升级版"
+    ],
+    "LocalizedDescription": null,
+    "Tags": [
+      "初中",
+      "小作品"
+    ],
+    "ModelID": null,
+    "ModelName": null,
+    "ModelTags": [],
+    "Version": 2501,
+    "Language": "Chinese",
+    "Visits": 23,
+    "Stars": 1,
+    "Supports": 2,
+    "Remixes": 0,
+    "Comments": 0,
+    "Price": 0,
+    "Popularity": 225,
+    "CreationDate": 1773663141059,
+    "UpdateDate": 1773747610238,
+    "SortingDate": 1773663141059,
+    "ID": "69b7f3a5f62689d20512d989",
+    "Category": "Experiment",
+    "Subject": "电位器控制逻辑",
+    "LocalizedSubject": null,
+    "Image": 1,
+    "ImageRegion": 0,
+    "User": {
+      "ID": "698deaa4fc064436f581886c",
+      "Nickname": "无害的C6H6",
+      "Signature": null,
+      "Avatar": 1,
+      "AvatarRegion": 0,
+      "Decoration": 0,
+      "Verification": null
+    },
+    "Visibility": 0,
+    "Settings": {},
+    "Multilingual": false
+  },
+  "Plots": null
+};
+
+    // 解析内层StatusSave
+    const status = JSON.parse(rawData.StatusSave);
+    const elements = status.Elements;
+    const wires = status.Wires;
+
+    // 获取所有元件坐标 (x, z)  忽略y
+    const positions = {};
+    elements.forEach(elem => {
+        const [x, y, z] = elem.Position.split(',').map(Number);
+        positions[elem.Identifier] = { x, z };
+    });
+
+    // 计算坐标范围
+    let xs = Object.values(positions).map(p => p.x);
+    let zs = Object.values(positions).map(p => p.z);
+    let xMin = Math.min(...xs), xMax = Math.max(...xs);
+    let zMin = Math.min(...zs), zMax = Math.max(...zs);
+
+    // 添加边距 (10%)
+    let marginX = (xMax - xMin) * 0.1;
+    let marginZ = (zMax - zMin) * 0.1;
+    if (marginX === 0) marginX = 0.2;
+    if (marginZ === 0) marginZ = 0.2;
+    xMin -= marginX;
+    xMax += marginX;
+    zMin -= marginZ;
+    zMax += marginZ;
+
+    // 设置viewBox
+    const viewBox = `${xMin} ${zMin} ${xMax - xMin} ${zMax - zMin}`;
+
+    // 获取SVG元素
+    const svg = document.getElementById('circuit');
+    svg.setAttribute('viewBox', viewBox);
+
+    // 定义缩写
+    const abbrMap = {
+        'Push Switch': 'PS',
+        'Counter': 'Cnt',
+        'Full Adder': 'FA',
+        'No Gate': 'NOT',
+        'Nor Gate': 'NOR',
+        'Nimp Gate': 'NIMP',
+        'And Gate': 'AND',
+        'Relay Component': 'Relay',
+        'Resistor': 'R',
+        'Incandescent Lamp': 'Lamp',
+        'Battery Source': 'Bat',
+        'Simple Switch': 'SW',
+        'Ground Component': 'GND'
+    };
+
+    // 绘制导线（蓝色）
+    wires.forEach(wire => {
+        const srcId = wire.Source;
+        const tgtId = wire.Target;
+        if (srcId === tgtId) return; // 忽略自连
+        if (!positions[srcId] || !positions[tgtId]) return;
+
+        const p1 = positions[srcId];
+        const p2 = positions[tgtId];
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', p1.x);
+        line.setAttribute('y1', p1.z);
+        line.setAttribute('x2', p2.x);
+        line.setAttribute('y2', p2.z);
+        line.setAttribute('stroke', 'blue');
+        line.setAttribute('stroke-width', '0.02'); // 相对宽度
+        line.setAttribute('opacity', '0.7');
+        svg.appendChild(line);
+    });
+
+    // 绘制元件
+    elements.forEach(elem => {
+        const id = elem.Identifier;
+        const pos = positions[id];
+        if (!pos) return;
+
+        const model = elem.ModelID;
+        const label = elem.Label || '';
+        const abbr = abbrMap[model] || model.substring(0,3);
+
+        // 圆点
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', pos.x);
+        circle.setAttribute('cy', pos.z);
+        circle.setAttribute('r', '0.03'); // 半径
+        circle.setAttribute('fill', 'gray');
+        circle.setAttribute('stroke', 'black');
+        circle.setAttribute('stroke-width', '0.005');
+        svg.appendChild(circle);
+
+        // 文本
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', pos.x + 0.04);
+        text.setAttribute('y', pos.z - 0.04);
+        text.setAttribute('font-size', '0.1');
+        text.setAttribute('fill', 'black');
+        text.textContent = abbr + (label ? `(${label})` : '');
+        svg.appendChild(text);
+    });
+
+})();
+</script>
+</body>
+</html>
