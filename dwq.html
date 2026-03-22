@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>电位器控制逻辑 - 初中物理实验：继电器调光灯模拟器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #f5f7fc 0%, #e9eef4 100%);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* 主卡片 */
+        .sim-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(156,180,204,0.3);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* 头部信息 */
+        .header {
+            background: #1a2a3a;
+            color: white;
+            padding: 1.2rem 2rem;
+            border-bottom: 4px solid #ffb347;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .header h1 small {
+            font-size: 0.8rem;
+            background: #ffb34730;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: normal;
+            color: #ffcd94;
+        }
+        .desc {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: #2c3e44;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+
+        /* 两列布局 */
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            padding: 2rem;
+        }
+        .control-panel {
+            flex: 1.2;
+            min-width: 260px;
+        }
+        .circuit-viz {
+            flex: 2;
+            min-width: 380px;
+        }
+
+        /* 电位器/计数器卡片 */
+        .potentiometer {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 1.4rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 1.8rem;
+            border: 1px solid #cbdde9;
+        }
+        .counter-area {
+            text-align: center;
+        }
+        .counter-value {
+            font-size: 4.2rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            background: #1e2f3f;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 3rem;
+            color: #ffd966;
+            letter-spacing: 4px;
+            margin: 8px 0;
+            box-shadow: inset 0 2px 5px #00000030, 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .binary-digits {
+            font-family: monospace;
+            background: #eef2f7;
+            padding: 6px 12px;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            letter-spacing: 6px;
+            font-weight: bold;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 20px 0 10px;
+        }
+        .btn-pot {
+            background: #2c3e50;
+            border: none;
+            font-size: 2.2rem;
+            font-weight: bold;
+            width: 70px;
+            height: 70px;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            transition: 0.1s linear;
+            box-shadow: 0 5px 0 #0f1a24;
+            font-family: monospace;
+        }
+        .btn-pot:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #0f1a24;
+        }
+        .btn-pot.minus {
+            background: #8b5a2b;
+        }
+        .btn-pot.plus {
+            background: #2a6b47;
+        }
+        .level-tag {
+            margin-top: 12px;
+            background: #f0f4f9;
+            padding: 8px;
+            border-radius: 60px;
+            font-weight: 500;
+        }
+
+        /* 译码器 & 继电器矩阵 */
+        .decoder-box {
+            background: #f8fafd;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #bfd5e6;
+        }
+        .relay-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .rela
